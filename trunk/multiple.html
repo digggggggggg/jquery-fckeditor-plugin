@@ -1,0 +1,44 @@
+<html>
+<head>
+ <script src="jquery-latest.js" type="text/javascript" language="javascript"></script>
+ <script src="jquery.form.js" type="text/javascript" language="javascript"></script>
+ <script src="jquery.MetaData.js" type="text/javascript" language="javascript"></script>
+ <script src="jquery.FCKEditor.pack.js" type="text/javascript" language="javascript"></script>
+ <script language="javascript">
+//# TEST PAGE FUNCTIONALITY
+$(function(){
+ $.fck.path = '/fwx/inc/fck/';
+	$('#textarea1').fck({toolbar: 'Default', height: 200 });
+	$('#textarea2').fck({toolbar: 'Basic', height: 100, width:300 });
+});
+ </script>
+</head>
+<body>
+
+<h1><a href="./">jQuery FCKEditor Plugin</a></h1>
+<h2>Multiple Editors Test</h2>
+
+<p>This page illustrates how to install multiple FCKEditors (with different settings) on one page.</p>
+<p><a href="./">Back to documentation/download</a></p>
+<hr/>
+
+<strong>textarea1</strong><br/>
+<textarea name="fck1" id="textarea1">textarea name : fck1<br />textarea id : textarea1</textarea>
+<hr/>
+
+<strong>textarea2</strong><br/>
+<textarea name="fck2" id="textarea2">textarea name : fck2<br />textarea id : textarea2</textarea>
+<hr/>
+
+<strong>The code:</strong>
+<pre><code>
+//# TEST PAGE FUNCTIONALITY
+$(function(){
+ $.fck.path = '/fwx/inc/fck/';
+ $('#textarea1').fck({toolbar: 'Default', height: 200 });
+ $('#textarea2').fck({toolbar: 'Basic', height: 100, width:300 });
+});
+</code></pre>
+
+</body>
+</html>
