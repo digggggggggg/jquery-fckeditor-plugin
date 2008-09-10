@@ -1,5 +1,5 @@
 /*
- ### jQuery FCKEditor Plugin v1.22 - 2008-07-31 ###
+ ### jQuery FCKEditor Plugin v1.23 - 2008-08-18 ###
  * http://www.fyneworks.com/ - diego@fyneworks.com
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -48,21 +48,34 @@ $.extend($, {
   update: function(){
    // Update contents of all instances
    var e = $.fck.editors;
+   //if(window.console) console.log(['fck.update',e]);
    for(var i=0;i<e.length;i++){
     var ta = e[i].textarea;
+    //if(window.console) console.log(['fck.update','ta',ta]);
     var ht = $.fck.content(e[i].InstanceName);
+    //if(window.console) console.log(['fck.update','ht',ht]);
     ta.val(ht).filter('textarea').text(ht);
     if(ht!=ta.val())
      alert('Critical error in FCK plugin:'+'\n'+'Unable to update form data');
    }
+   //if(window.console) console.log(['fck.update','done']);
   }, // fck.update
   
   // utility method to non-existing instances from memory
   clean: function(){
+   //if(window.console) console.log(['fck.clean',$.fck.editors]);
 			var a = $.fck.editors, b = {}, c = [];
-			$.each(a, function(){ if($('#'+this.InstanceName).length>0) b[this.InstanceName] = this; });
+   //if(window.console) console.log(['fck.clean','a',a]);
+			$.each(a, function(){
+    //if(window.console) console.log(['fck.clean','a - name',this.InstanceName]);
+    if($('#'+this.InstanceName+', textarea[@name='+this.InstanceName+']').length>0)
+				 b[this.InstanceName] = this;
+			});
+   //if(window.console) console.log(['fck.clean','b',b]);
 			$.each(b, function(){ c[c.length] = this; });
+   //if(window.console) console.log(['fck.clean','c',c]);
 			$.fck.editors = c;
+   //if(window.console) console.log(['fck.clean',$.fck.editors]);
   }, // fck.clean
   
   // utility method to create instances of FCK editor (if any)
@@ -123,9 +136,14 @@ $.extend($, {
     ajaxSubmit: $.fn.ajaxSubmit || function(){}
    };
    $.fn.ajaxSubmit = function(){
+				//if(window.console) console.log(['fck.intercepted','$.fn.ajaxSubmit',$.fck.editors]);
     $.fck.update(); // update html
     return $.fck.intercepted.ajaxSubmit.apply( this, arguments );
    };
+			// Also attach to conventional form submission
+			//$('form').submit(function(){
+   // $.fck.update(); // update html
+   //});
   },
   
   // utility method to create an instance of FCK editor
@@ -158,20 +176,25 @@ $.extend($, {
       if(t.id/* has id */ && !t.fck/* not already installed */){
        var n = a.length;
 							// create FCKeditor instance
+       //if(window.console) console.log(['fck.editor','new FCKeditor',t.name,t]);
        a[n] = new FCKeditor(t.name);
 							// Apply inline configuration
+       //if(window.console) console.log(['fck.editor','Apply inline configuration',o]);
        $.extend(a[n], o, o.Config || {});
 							// Start FCKeditor
        a[n].ReplaceTextarea();
 							// Store reference to original element
        a[n].textarea = T;
 							// Store reference to FCKeditor in element
+       //if(window.console) console.log(['fck.editor','Store reference to FCKeditor in element',a[n]]);
        t.fck = a[n];
       };
      }
     );
-    // Store instances in global array
+    // Store editor instances in global array
+    //if(window.console) console.log(['fck.editor','Store editor instances in global array',a]);
     $.fck.editors = a;
+    //if(window.console) console.log(['fck.editor','$.fck.editors',$.fck.editors]);
 				// Remove old non-existing editors from memory
 				$.fck.clean();
    };
@@ -182,8 +205,8 @@ $.extend($, {
   // start-up method
   start: function(o/* options */){
    // Attach itself to known plugins...
-   $.fck.intercept();
-   // Create FCK editors
+			$.fck.intercept();
+			// Create FCK editors
    return $.fck.create(o);
   } // fck.start
   
