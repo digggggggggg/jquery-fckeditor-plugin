@@ -1,5 +1,5 @@
 /*
- ### jQuery FCKEditor Plugin v1.23 - 2008-08-18 ###
+ ### jQuery FCKEditor Plugin v1.3 - 2008-09-30 ###
  * http://www.fyneworks.com/ - diego@fyneworks.com
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -28,11 +28,24 @@ $.extend($, {
   
   // utility method to read contents of FCK editor
   content: function(i, v){
-   try{
+   //try{
+				//if(window.console) console.log(['fck.content',arguments]);
     var x = FCKeditorAPI.GetInstance(i);
-    if(v) x.SetHTML(v);
+				//if(window.console) console.log(['fck.content','x',x]);
+				// Look for textare with matching name for backward compatibility
+				if(!x){
+					x = $('#'+i.replace(/\./gi,'\\\.')+'')[0];
+ 				//if(window.console) console.log(['fck.content','ele',x]);
+					if(x) x = FCKeditorAPI.GetInstance(x.id);
+				};
+				if(!x){
+					alert('FCKEditor instance "'+i+'" could not be found!');
+					return '';
+				};
+				if(v) x.SetHTML(v);
+				//if(window.console) console.log(['fck.content','x',x.GetXHTML]);
     return x.GetXHTML(true);
-   }catch(e){ return ''; };
+   //}catch(e){ return 'OOPS!'; };
   }, // fck.content function
   
   // inspired by Sebastián Barrozo <sbarrozo@b-soft.com.ar>
@@ -46,6 +59,7 @@ $.extend($, {
   
   // utility method to update textarea contents before ajax submission
   update: function(){
+			LOG('DEBUGGGGGG fck.update 1');
    // Update contents of all instances
    var e = $.fck.editors;
    //if(window.console) console.log(['fck.update',e]);
@@ -67,8 +81,8 @@ $.extend($, {
 			var a = $.fck.editors, b = {}, c = [];
    //if(window.console) console.log(['fck.clean','a',a]);
 			$.each(a, function(){
-    //if(window.console) console.log(['fck.clean','a - name',this.InstanceName]);
-    if($('#'+this.InstanceName+', textarea[@name='+this.InstanceName+']').length>0)
+    //if(window.console) console.log(['fck.clean','a - id',this.InstanceName]);
+    if($('#'+this.InstanceName.replace(/\./gi,'\\\.')+'').length>0)
 				 b[this.InstanceName] = this;
 			});
    //if(window.console) console.log(['fck.clean','b',b]);
@@ -171,13 +185,13 @@ $.extend($, {
 							return alert(['An invalid parameter has been passed to the $.fckeditor.editor function','tagName:'+t.tagName,'name:'+t.name,'id:'+t.id].join('\n'));
       
       var T = $(t);// t = element, T = jQuery
-      if(!t.name) t.name = 'fck'+($.fck.editors.length+1);
-      if(!t.id) t.id = t.name;
-      if(t.id/* has id */ && !t.fck/* not already installed */){
+      if(!t.fck/* not already installed */){
+							t.id = t.id || 'fck'+($.fck.editors.length+1);
+							t.name = t.name || t.id;
        var n = a.length;
 							// create FCKeditor instance
-       //if(window.console) console.log(['fck.editor','new FCKeditor',t.name,t]);
-       a[n] = new FCKeditor(t.name);
+       //if(window.console) console.log(['fck.editor','new FCKeditor',t.id,t]);
+       a[n] = new FCKeditor(t.id);
 							// Apply inline configuration
        //if(window.console) console.log(['fck.editor','Apply inline configuration',o]);
        $.extend(a[n], o, o.Config || {});
