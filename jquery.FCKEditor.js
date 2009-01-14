@@ -1,5 +1,5 @@
 /*
- ### jQuery FCKEditor Plugin v1.3 - 2008-09-30 ###
+ ### jQuery FCKEditor Plugin v1.3 - 2008-10-09 ###
  * http://www.fyneworks.com/ - diego@fyneworks.com
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php
@@ -59,7 +59,8 @@ $.extend($, {
   
   // utility method to update textarea contents before ajax submission
   update: function(){
-			LOG('DEBUGGGGGG fck.update 1');
+			// Ignore missing editors
+   $.fck.clean();
    // Update contents of all instances
    var e = $.fck.editors;
    //if(window.console) console.log(['fck.update',e]);
