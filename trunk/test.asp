@@ -3,6 +3,7 @@
 <head> 
 	<title>jQuery FCKEditor Test Result</title>
 	<link type="text/css" rel="stylesheet" href="/@/@.css"/>
+ <style> body{ margin:0; padding:0; } </style>
 </head>
 <body>
 
