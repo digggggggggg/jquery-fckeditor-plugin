@@ -1,5 +1,5 @@
 /*
- ### jQuery FCKEditor Plugin v1.3 - 2008-09-30 ###
+ ### jQuery FCKEditor Plugin v1.30 - 2009-03-16 ###
  * http://www.fyneworks.com/ - diego@fyneworks.com
  * Dual licensed under the MIT and GPL licenses:
  *   http://www.opensource.org/licenses/mit-license.php

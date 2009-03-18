@@ -1,7 +1,0 @@
-25-Jul-2007 - v1.0 - it begins...
-10-Aug-2007 - Added setHTML method
-12-Jan-2008 - v1.1 - plugin now follows the jquery philosophy of $(selector).plugin();
-12-Jan-2008 - the new structure allows multiple configurations on one page
-20-Feb-2008 - fixed bug (option variable isolation): http://plugins.jquery.com/node/900
-24-Feb-2008 - fixed bug: http://plugins.jquery.com/node/1701
-31-Jul-2008 - enhancement: automatically clears non-existing editors from memory
