@@ -89,6 +89,7 @@
    <ul class="Clear">
     <li><a href="#tab-Overview" id="btn-Overview">Intro</a></li>
     <li><a href="#tab-Usage" id="btn-Usage">Usage</a></li>
+    <li><a href="#tab-Multiple" id="btn-Multiple">Multiple Editors</a></li>
     <li><a href="#tab-Download" id="btn-Download">Download</a></li>
     <li><a href="#tab-Support" id="btn-Support">Support</a></li>
     <li><a href="#tab-License" id="btn-License">License</a></li>
@@ -106,7 +107,6 @@
    
    
    <div id="tab-Overview">
-
 <h2>What does it do?</h2>
 <ul>
  <li>
@@ -208,53 +208,97 @@ $(function(){
   Any input regarding integrating this plugin with other jQuery plugins is welcome.
  </li>
 </ul>
-
    </div><!--// tab-Overview //-->
    
    <div id="tab-Usage">
 <h2>Usage</h2>
-<ul>
- <li>
-  <u>Method 1</u>: replacing ALL textareas in a page with THE SAME settings
-  <br/>
-  <code><pre>
+
+<h3>Method 1</h3>
+<p>Replacing ALL textareas in a page with THE SAME settings</p>
+<pre class="code"><code class="html">
 &lt;textarea name="fck1" cols="50" rows="6"&gt;&lt;/textarea&gt;
 &lt;textarea name="fck2" cols="50" rows="6"&gt;&lt;/textarea&gt;
 &lt;textarea name="fck3" cols="50" rows="6"&gt;&lt;/textarea&gt;
 &lt;script&gt; $(function(){ $('textarea').fck({path: '/path/to/fck/directory/'}); }); &lt;/script&gt;
-  </pre></code>
- </li>
- <li>
-  <u>Method 2</u>: replacing SOME textareas in a page with THE SAME settings
-  <br/>
-  In this example, only textarea fck3 will not be converted into a FCKEditor.
-  <br/>
-  <code><pre>
-<span style="color:#090">&lt;textarea name="fck1" class="<strong>fck</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;</span>
-<span style="color:#090">&lt;textarea name="fck2" class="<strong>fck</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;</span>
-<span style="color:#900">&lt;textarea name="fck3" cols="50" rows="6"&gt;&lt;/textarea&gt;</span>
+</code></pre>
+
+<h3>Method 2</h3>
+<p>replacing SOME textareas in a page with THE SAME settings
+<br/>
+In this example, only textarea fck3 will not be converted into a FCKEditor.
+</p>
+<pre class="code"><code class="html">
+&lt;textarea name="fck1" class="<strong>fck</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;
+&lt;textarea name="fck2" class="<strong>fck</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;
+&lt;textarea name="fck3" cols="50" rows="6"&gt;&lt;/textarea&gt;
+</code></pre>
+<pre class="code"><code class="js">
 &lt;script&gt; $(function(){ $('textarea.fck').fck({path: '/path/to/fck/directory/'}); }); &lt;/script&gt;
-  </pre></code>
- </li>
- <li>
-  <u>Method 3</u>: replacing SOME textareas in a page with DIFFERENT SETTINGS (<a href="./multiple.html">see demo</a>)
-  <br/>
-  <code><pre>
+</code></pre>
+
+<h3>Method 3</h3>
+<p>
+replacing SOME textareas in a page with DIFFERENT SETTINGS
+</p>
+
+<pre class="code"><code class="html">
 &lt;textarea name="<strong>fck1</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;
 &lt;textarea name="<strong>fck2</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;
 &lt;textarea name="<strong>fck3</strong>" cols="50" rows="6"&gt;&lt;/textarea&gt;
+</code></pre>
+<pre class="code"><code class="js">
 &lt;script&gt;
  $(function(){
   $.fck.config = {path: '/path/to/fck/directory/', height:300 };
-  $('textarea#fck1').fck(/* default settings */);
-  $('textarea#fck2').fck({ toolbar:'MyCustomerToolbar' });
-  $('textarea#fck3').fck({ toolbar:'MyCustomerToolbar', height:200 });
+  $('textarea<strong>#fck1</strong>').fck(/* default settings */);
+  $('textarea<strong>#fck2</strong>').fck({ toolbar:'MyCustomerToolbar' });
+  $('textarea<strong>#fck3</strong>').fck({ toolbar:'MyCustomerToolbar', height:200 });
  });
 &lt;/script&gt;
-  </pre></code>
- </li>
-</ul>
+</code></pre>
    </div><!--// tab-Usage //-->
+   
+   <div id="tab-Multiple">
+
+<h2>Multiple Editors</h2>
+<p>This example below illustrates how to install multiple FCKEditors (with different settings) on one page.</p>
+
+<strong>textarea1</strong><br/>
+<textarea name="fck1" id="textarea1">textarea name : fck1<br />textarea id : textarea1</textarea>
+<hr/>
+
+<strong>textarea2</strong><br/>
+<textarea name="fck2" id="textarea2">textarea name : fck2<br />textarea id : textarea2</textarea>
+<hr/>
+
+<script language="javascript">
+//# SAMPLE CODE FOR MULTIPLE EDITORS
+$(function(){
+ $.fck.path = '/fwx/inc/fck/';
+	$('#textarea1').fck({toolbar: 'Default', height: 200 });
+	$('#textarea2').fck({toolbar: 'Basic', height: 100, width:300 });
+});
+</script>
+
+<h3>Sample HTML</h3>
+<pre class="code"><code class="html">
+&lt;strong&gt;textarea1&lt;/strong&gt;&lt;br/&gt;
+&lt;textarea name=&quot;fck1&quot; id=&quot;textarea1&quot;&gt;textarea name : fck1&lt;br /&gt;textarea id : textarea1&lt;/textarea&gt;
+&lt;hr/&gt;
+&lt;strong&gt;textarea2&lt;/strong&gt;&lt;br/&gt;
+&lt;textarea name=&quot;fck2&quot; id=&quot;textarea2&quot;&gt;textarea name : fck2&lt;br /&gt;textarea id : textarea2&lt;/textarea&gt;
+</code></pre>
+
+<h3>Sample Javascript</h3>
+<pre class="code"><code class="js">
+//# TEST PAGE FUNCTIONALITY
+$(function(){
+ $.fck.path = '/fwx/inc/fck/';
+ $('#textarea1').fck({toolbar: 'Default', height: 200 });
+ $('#textarea2').fck({toolbar: 'Basic', height: 100, width:300 });
+});
+</code></pre>
+   </div><!--// tab-Multiple //-->
    
    <div id="tab-Download">
     <h2>Download</h2>
