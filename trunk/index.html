@@ -9,7 +9,10 @@
 </div>
 
 <script language="javascript">
-window.location = "http://www.fyneworks.com/jquery/FCKEditor/";
+if(window.location.toString().match(/localhost/i))
+ window.location = 'index.asp';
+else
+ window.location = "http://www.fyneworks.com/jquery/FCKEditor/";
 </script>
 
 </body>
