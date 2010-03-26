@@ -236,7 +236,14 @@ $.extend($, {
 $.extend($.fn, {
  fck: function(o){
   //(function(opts){ $.fck.start(opts); })($.extend(o || {}, {e: this}));
-  $.fck.start($.extend(o || {}, {e: this}));
+  
+		//$.fck.start($.extend(o || {}, {e: this}));
+		// PATCHED by jasoncheow
+		// SEE: https://code.google.com/p/jquery-fckeditor-plugin/issues/detail?id=8
+  return this.each(function(){
+   $.fck.start($.extend({}, o || {}, {e: this}));
+  });
+		
  }
 });
 // extend $.fn
