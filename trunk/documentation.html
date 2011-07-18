@@ -95,6 +95,7 @@ src="http://pagead2.googlesyndication.com/pagead/show_ads.js">
     <li><a href="#tab-Download" id="btn-Download">Download</a></li>
     <li><a href="#tab-Support" id="btn-Support">Support</a></li>
     <li><a href="#tab-License" id="btn-License">License</a></li>
+    <!--//<li><a href="#tab-Break" id="btn-Break">Have a break!</a></li>//-->
    </ul><!--// tabs //-->
    <!--//
    ####################################
@@ -296,7 +297,7 @@ $(function(){
 <pre class="code"><code class="js">
 //# TEST PAGE FUNCTIONALITY
 $(function(){
- $.fck.path = '/fwx/inc/fck/';
+ $.fck.path = '/path/to/fckeditor/';
  $('#textarea1').fck({toolbar: 'Default', height: 200 });
  $('#textarea2').fck({toolbar: 'Basic', height: 100, width:300 });
 });
@@ -481,12 +482,16 @@ $(function(){
     
     <h2>Credit</h2>
     <ul>
-     <li>Diego A. - Author, <a href="http://www.fyneworks.com/">London SEO Consultant</a></li>
+     <li>Fyneworks.com <a href="http://www.fyneworks.com/">professional web design</a> and <a href="http://www.fyneworks.com/">expert SEO services</a></li>
      <li><a target="_blank" href="http://keith-wood.name/">Keith Wood</a> - The brain behind v2.1</li>
      <li>Dean Edwards - Author of <a target="_blank" href="http://dean.edwards.name/packer/">JS Packer</a> used to compress the plugin</li>
      <li>Will Stuckey, Ritesh Agrawal and everyone else who worked in the previous versions of the plugin - I'm not so good with research...</li>
     </ul>
-   </div><!--// tab-Download //-->
+    <p>
+     If we've missed anyone (anyone!) please contact us (info at fyneworks.com) and we'll make sure 
+     to give credit where credit is due.
+    </p>
+   </div><!--// tab-Support //-->
    
    
    
@@ -560,6 +565,12 @@ $(function(){
      </table>
     </div><!--// License Info //-->
    </div><!--// tab-License //-->
+   <!--//
+   <div id="tab-Break">
+    <h2>Have a break!</h2>
+    <p>Check out this <a href="http://www.youtube.com/watch?v=zMFSEm0Ry_E">awesome video</a>!</p>
+    <iframe title="YouTube video player" class="youtube-player" type="text/html" width="480" height="390" src="http://www.youtube.com/embed/zMFSEm0Ry_E" frameborder="0" allowFullScreen></iframe>
+   </div>//--><!--// tab-Break//-->
   </div><!--// documentation //-->
  
  </div><!--// body //-->
@@ -587,7 +598,9 @@ $(function(){
  <!--//</div>//-->
 </div>
 	
-	<script src='http://toolbar.wibiya.com/toolbarLoader.php?toolbarId=2147&nc=0&pl=1' type='text/javascript'></script>
+	<!--//
+<script src='http://toolbar.wibiya.com/toolbarLoader.php?toolbarId=2147&nc=0&pl=1' type='text/javascript'></script>
+//-->
  <!--//
  Wibiya clashes with jQuery so I found these articles:
  http://getsatisfaction.com/wibiya/topics/jquery_1_3_conflict
