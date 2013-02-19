@@ -4,9 +4,7 @@
  * @requires jQuery v1.2.2 or later
  *
  * Examples and documentation at: http://malsup.com/jquery/form/
- * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+	* Licensed under http://en.wikipedia.org/wiki/MIT_License
  *
  * Revision: $Id$
  */
@@ -169,7 +167,7 @@ $.fn.ajaxSubmit = function(options) {
         var $io = $('<iframe id="' + id + '" name="' + id + '" />');
         var io = $io[0];
 
-        if ($.browser.msie || $.browser.opera) 
+        if ((!$.support.opacity && !$.support.style) || $.browser.opera) 
             io.src = 'javascript:false;document.write("");';
         $io.css({ position: 'absolute', top: '-1000px', left: '-1000px' });
 
@@ -540,7 +538,7 @@ $.fieldValue = function(el, successful) {
             var op = ops[i];
             if (op.selected) {
                 // extra pain for IE...
-                var v = $.browser.msie && !(op.attributes['value'].specified) ? op.text : op.value;
+                var v = (!$.support.opacity && !$.support.style) && !(op.attributes['value'].specified) ? op.text : op.value;
                 if (one) return v;
                 a.push(v);
             }
