@@ -1,9 +1,7 @@
 /*
  ### jQuery FCKEditor Plugin v1.32 - 2010-03-26 ###
  * http://www.fyneworks.com/ - diego@fyneworks.com
- * Dual licensed under the MIT and GPL licenses:
- *   http://www.opensource.org/licenses/mit-license.php
- *   http://www.gnu.org/licenses/gpl.html
+	* Licensed under http://en.wikipedia.org/wiki/MIT_License
  ###
  Project: http://jquery.com/plugins/project/FCKEditor/
  Website: http://www.fyneworks.com/jquery/FCKEditor/
